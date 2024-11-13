@@ -1,3 +1,5 @@
+import Form from './components/Form.tsx';
+
 function App() {
     return (
         <div className="min-h-screen p-5 bg-gray-800">
@@ -7,6 +9,7 @@ function App() {
 
             <div className="flex flex-row text-white">
                 {/* Form Section */}
+                <Form />
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
                     <div className="flex flex-row justify-between h-full gap-2">
