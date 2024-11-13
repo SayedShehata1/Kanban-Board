@@ -16,13 +16,54 @@ function App() {
         SendToTherapists: []
     });
 
+    const [editMode, setEditMode] = useState<boolean>(false);
+    const [currentCardIndex, setCurrentCardIndex] = useState<number | null>(
+        null
+    );
+    const [currentCardColumn, setCurrentCardColumn] = useState<
+        keyof typeof cards | null
+    >(null);
+    const [defaultValue, setDefaultValue] = useState<FormValues | null>(null);
+
+    // handle form submission
     const onSubmit = (data: FormValues) => {
         const updatedCards = { ...cards };
-        updatedCards.Unclaimed = [
-            ...updatedCards.Unclaimed,
-            { ...data, status: 'Unclaimed' }
-        ];
+
+        if (editMode && currentCardIndex !== null && currentCardColumn) {
+            // Update the card in edit mode
+            updatedCards[currentCardColumn][currentCardIndex] = {
+                ...data,
+                status: currentCardColumn
+            };
+        } else {
+            // Add a new card in add mode
+            updatedCards.Unclaimed = [
+                ...updatedCards.Unclaimed,
+                { ...data, status: 'Unclaimed' }
+            ];
+        }
+
         setCards(updatedCards);
+        setEditMode(false);
+        setCurrentCardIndex(null);
+        setCurrentCardColumn(null);
+        setDefaultValue(null);
+    };
+
+    // handle delete card
+    const handleDelete = (index: number, column: keyof typeof cards) => {
+        const updatedCards = { ...cards };
+        updatedCards[column].splice(index, 1);
+        setCards(updatedCards);
+    };
+
+    // handle edit card
+    const handleEdit = (index: number, column: keyof typeof cards) => {
+        const card = cards[column][index];
+        setEditMode(true);
+        setCurrentCardIndex(index);
+        setCurrentCardColumn(column);
+        setDefaultValue(card);
     };
 
     return (
@@ -33,7 +74,11 @@ function App() {
 
             <div className="flex flex-row text-white">
                 {/* Form Section */}
-                <Form onSubmit={onSubmit} />
+                <Form
+                    onSubmit={onSubmit}
+                    editMode={editMode}
+                    defaultValue={defaultValue}
+                />
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
                     <div className="flex flex-row justify-between h-full gap-2">
@@ -43,6 +88,8 @@ function App() {
                                     key={columnName}
                                     title={columnName}
                                     cards={cards[columnName]}
+                                    onDelete={handleDelete}
+                                    onEdit={handleEdit}
                                 />
                             )
                         )}

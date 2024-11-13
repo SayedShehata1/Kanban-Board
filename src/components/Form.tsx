@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -5,6 +7,8 @@ import { FormValues } from './types.ts';
 
 interface FormProps {
     onSubmit: (data: FormValues) => void;
+    editMode: boolean;
+    defaultValue: FormValues | null;
 }
 
 const schema = Yup.object().shape({
@@ -22,7 +26,8 @@ const schema = Yup.object().shape({
         .required('Phone number is required.')
 });
 
-const Form: React.FC<FormProps> = ({ onSubmit }) => {
+const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
+    // using react-hook-form to handle form state
     const {
         register,
         handleSubmit,
@@ -32,13 +37,22 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         resolver: yupResolver(schema)
     });
 
+    // reset form when defaultValue changes
+    useEffect(() => {
+        if (defaultValue) {
+            reset(defaultValue);
+        } else {
+            reset({ title: '', name: '', age: 0, email: '', phone: '' });
+        }
+    }, [defaultValue, reset]);
+
     const submitHandler = (data: FormValues) => {
         onSubmit(data);
         reset();
     };
     return (
         <div className="flex flex-col gap-4 m-8">
-            <b>Add New Card</b>
+            <b>{editMode ? 'Edit Card' : 'Add New Card'}</b>
             <form
                 onSubmit={handleSubmit(submitHandler)}
                 className="flex flex-col gap-4"
@@ -108,7 +122,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                     type="submit"
                     className="p-2 mt-4 text-white bg-blue-500 rounded-md "
                 >
-                    Add Card
+                    {editMode ? 'Update Card' : 'Add Card'}
                 </button>
             </form>
         </div>
