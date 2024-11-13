@@ -3,6 +3,10 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormValues } from './types.ts';
 
+interface FormProps {
+    onSubmit: (data: FormValues) => void;
+}
+
 const schema = Yup.object().shape({
     title: Yup.string().required('Title is required.'),
     name: Yup.string().required('Name is required.'),
@@ -18,7 +22,7 @@ const schema = Yup.object().shape({
         .required('Phone number is required.')
 });
 
-const Form = () => {
+const Form: React.FC<FormProps> = ({ onSubmit }) => {
     const {
         register,
         handleSubmit,
@@ -29,7 +33,7 @@ const Form = () => {
     });
 
     const submitHandler = (data: FormValues) => {
-        console.log(data);
+        onSubmit(data);
         reset();
     };
     return (
