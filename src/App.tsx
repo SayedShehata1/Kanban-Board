@@ -90,21 +90,21 @@ function App() {
 
     return (
         <div className="min-h-screen p-3 bg-[#d3e5ed]">
-            <header className="flex flex-col items-center justify-center mb-8 text-2xl text-balck">
+            <header className="flex flex-col items-center justify-center mb-8 text-2xl text-black">
                 <b>Kanban Board</b>
             </header>
 
-            <div className="flex text-balck">
+            <div className="flex flex-col text-black md:flex-row md:space-x-4">
                 {/* Form Section */}
                 <Form
                     onSubmit={onSubmit}
                     editMode={editMode}
                     defaultValue={defaultValue}
                 />
-                <span className="mr-2 border-2 border-l-blue-400"></span>
+                <span className="hidden mr-2 border-2 md:inline-block border-l-blue-400"></span>
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
-                    <div className="flex flex-row justify-between h-full gap-4">
+                    <div className="flex flex-col flex-wrap justify-between h-full gap-4 lg:flex-row">
                         {(Object.keys(cards) as (keyof typeof cards)[]).map(
                             (columnName) => (
                                 <KanbanColumn

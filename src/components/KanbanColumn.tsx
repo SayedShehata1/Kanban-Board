@@ -27,8 +27,8 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
     onEdit,
     onMoveCard
 }) => (
-    <div className="flex-1">
-        <div className="flex flex-col w-full h-[calc(100vh-7rem)] px-2 py-4 text-black border-2 border-[#bad1e0] rounded-md bg-[#bad1e0]">
+    <div className="flex-1 min-w-full md:min-w-[250px]">
+        <div className="flex flex-col w-full max-h-[calc(100vh-7rem)] px-2 py-4 text-black border-2 border-[#bad1e0] rounded-md bg-[#bad1e0]">
             <div className="flex items-center justify-between pb-3">
                 <b>{title}</b>
                 <span className="flex items-center justify-center w-10 h-10 font-bold bg-white rounded-full">
@@ -57,7 +57,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                                             e.target.value as ColumnType
                                         )
                                     }
-                                    className="p-1 mx-auto text-white border rounded-md bg-slate-950"
+                                    className="p-1 text-white border rounded-md w-fit bg-slate-950"
                                 >
                                     <option value="Unclaimed">Unclaimed</option>
                                     <option value="FirstContact">
@@ -76,7 +76,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                                     onClick={() =>
                                         onEdit(index, title as ColumnType)
                                     }
-                                    className="mx-2 text-blue-500 hover:text-blue-700"
+                                    className="text-blue-500 hover:text-blue-700"
                                 >
                                     Edit
                                 </button>

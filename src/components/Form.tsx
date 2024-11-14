@@ -51,14 +51,14 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
         reset();
     };
     return (
-        <div className="flex flex-col md:w-[282px] gap-2 p-2 m-2 rounded border-2 border-[#bad1e0]">
+        <div className="flex flex-col w-full md:w-[280px] gap-2 p-2 m-2 rounded border-2 border-[#bad1e0]">
             <b>{editMode ? 'Edit Card' : 'Add New Card'}</b>
             <form
                 onSubmit={handleSubmit(submitHandler)}
-                className="flex flex-col gap-1 "
+                className="flex flex-col gap-2 "
             >
                 <div>
-                    <label className="block ">Title</label>
+                    <label>Title</label>
                     <input
                         type="text"
                         {...register('title')}
@@ -70,7 +70,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block ">Name</label>
+                    <label>Name</label>
                     <input
                         type="text"
                         {...register('name')}
@@ -82,7 +82,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block ">Age</label>
+                    <label>Age</label>
                     <input
                         type="number"
                         {...register('age')}
@@ -96,7 +96,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block ">Email</label>
+                    <label>Email</label>
                     <input
                         type="email"
                         {...register('email')}
@@ -108,7 +108,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block ">Phone</label>
+                    <label>Phone</label>
                     <input
                         type="text"
                         {...register('phone')}
