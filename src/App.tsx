@@ -89,18 +89,19 @@ function App() {
     };
 
     return (
-        <div className="min-h-screen p-5 bg-gray-800">
-            <header className="flex flex-col items-center justify-center mb-8 text-2xl text-white">
+        <div className="min-h-screen p-3 bg-[#d3e5ed]">
+            <header className="flex flex-col items-center justify-center mb-8 text-2xl text-balck">
                 <b>Kanban Board</b>
             </header>
 
-            <div className="flex flex-row text-white">
+            <div className="flex text-balck">
                 {/* Form Section */}
                 <Form
                     onSubmit={onSubmit}
                     editMode={editMode}
                     defaultValue={defaultValue}
                 />
+                <span className="mr-2 border-2 border-l-blue-400"></span>
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
                     <div className="flex flex-row justify-between h-full gap-4">

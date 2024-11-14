@@ -51,30 +51,30 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
         reset();
     };
     return (
-        <div className="flex flex-col gap-4 m-8">
+        <div className="flex flex-col md:w-[282px] gap-2 p-2 m-2 rounded border-2 border-[#bad1e0]">
             <b>{editMode ? 'Edit Card' : 'Add New Card'}</b>
             <form
                 onSubmit={handleSubmit(submitHandler)}
-                className="flex flex-col gap-4"
+                className="flex flex-col gap-1 "
             >
                 <div>
-                    <label className="block text-white">Title</label>
+                    <label className="block ">Title</label>
                     <input
                         type="text"
                         {...register('title')}
-                        className="w-full p-2 border rounded-md bg-slate-700"
+                        className="w-full p-2 border rounded-md bg-slate-500"
                     />
                     {errors.title && (
-                        <p className="text-red-500">{errors.title.message}</p>
+                        <p className="text-red-500 ">{errors.title.message}</p>
                     )}
                 </div>
 
                 <div>
-                    <label className="block text-white">Name</label>
+                    <label className="block ">Name</label>
                     <input
                         type="text"
                         {...register('name')}
-                        className="w-full p-2 border rounded-md bg-slate-700"
+                        className="w-full p-2 border rounded-md bg-slate-500"
                     />
                     {errors.name && (
                         <p className="text-red-500">{errors.name.message}</p>
@@ -82,11 +82,11 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block text-white">Age</label>
+                    <label className="block ">Age</label>
                     <input
                         type="number"
                         {...register('age')}
-                        className="w-full p-2 border rounded-md bg-slate-700"
+                        className="w-full p-2 border rounded-md bg-slate-500"
                     />
                     {errors.age && (
                         <p className="text-red-500">
@@ -96,11 +96,11 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block text-white">Email</label>
+                    <label className="block ">Email</label>
                     <input
                         type="email"
                         {...register('email')}
-                        className="w-full p-2 border rounded-md bg-slate-700"
+                        className="w-full p-2 border rounded-md bg-slate-500"
                     />
                     {errors.email && (
                         <p className="text-red-500">{errors.email.message}</p>
@@ -108,11 +108,11 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
 
                 <div>
-                    <label className="block text-white">Phone</label>
+                    <label className="block ">Phone</label>
                     <input
                         type="text"
                         {...register('phone')}
-                        className="w-full p-2 border rounded-md bg-slate-700"
+                        className="w-full p-2 border rounded-md bg-slate-500"
                     />
                     {errors.phone && (
                         <p className="text-red-500">{errors.phone.message}</p>
@@ -120,7 +120,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, editMode, defaultValue }) => {
                 </div>
                 <button
                     type="submit"
-                    className="p-2 mt-4 text-white bg-blue-500 rounded-md "
+                    className="p-2 mt-4 bg-blue-500 rounded-md hover:bg-blue-600 "
                 >
                     {editMode ? 'Update Card' : 'Add Card'}
                 </button>

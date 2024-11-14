@@ -28,55 +28,71 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
     onMoveCard
 }) => (
     <div className="flex-1">
-        <div className="flex justify-between px-3">
-            <b>{title}</b> <span>{cards.length}</span>
-        </div>
-        <div className="h-full p-2 mt-2 bg-blue-500 border border-white">
-            {cards.map((card, index) => (
-                <div
-                    key={index}
-                    className="p-4 mb-4 text-black bg-white rounded-md shadow-md"
-                >
-                    <Card {...card} />
+        <div className="flex flex-col w-full h-[calc(100vh-7rem)] px-2 py-4 text-black border-2 border-[#bad1e0] rounded-md bg-[#bad1e0]">
+            <div className="flex items-center justify-between pb-3">
+                <b>{title}</b>
+                <span className="flex items-center justify-center w-10 h-10 font-bold bg-white rounded-full">
+                    {cards.length}
+                </span>
+            </div>
+            <div className="h-full p-1 mt-4 overflow-y-auto">
+                {cards.map((card, index) => (
                     <div
                         key={index}
-                        className="p-4 mb-4 text-black bg-white rounded-md shadow-md"
+                        className="p-1 mt-4 transition bg-white rounded-lg hover:shadow-lg"
                     >
-                        <button
-                            onClick={() => onEdit(index, title as ColumnType)}
-                            className="mx-2 text-blue-500 hover:text-blue-700"
+                        <Card {...card} />
+                        <div
+                            key={index}
+                            className="flex flex-col justify-between gap-2 mt-1"
                         >
-                            Edit
-                        </button>
-                        <button
-                            onClick={() => onDelete(index, title as ColumnType)}
-                            className="text-red-500 hover:text-red-700"
-                        >
-                            Delete
-                        </button>
-                        <select
-                            value={card.status}
-                            onChange={(e) =>
-                                onMoveCard(
-                                    index,
-                                    title as ColumnType,
-                                    e.target.value as ColumnType
-                                )
-                            }
-                            className="p-1 ml-2 text-white border rounded-md bg-slate-950"
-                        >
-                            <option value="Unclaimed">Unclaimed</option>
-                            <option value="FirstContact">First Contact</option>
-                            <option value="PreparingWorkOffer">
-                                Preparing Work Offer
-                            </option>
-                            <option value="SendToTherapists">
-                                Send to Therapists
-                            </option>
-                        </select>
+                            <div>
+                                <span className="font-semibold">Status: </span>
+                                <select
+                                    value={card.status}
+                                    onChange={(e) =>
+                                        onMoveCard(
+                                            index,
+                                            title as ColumnType,
+                                            e.target.value as ColumnType
+                                        )
+                                    }
+                                    className="p-1 mx-auto text-white border rounded-md bg-slate-950"
+                                >
+                                    <option value="Unclaimed">Unclaimed</option>
+                                    <option value="FirstContact">
+                                        First Contact
+                                    </option>
+                                    <option value="PreparingWorkOffer">
+                                        Preparing Work Offer
+                                    </option>
+                                    <option value="SendToTherapists">
+                                        Send to Therapists
+                                    </option>
+                                </select>
+                            </div>
+                            <div className="flex justify-center gap-5 pb-2">
+                                <button
+                                    onClick={() =>
+                                        onEdit(index, title as ColumnType)
+                                    }
+                                    className="mx-2 text-blue-500 hover:text-blue-700"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() =>
+                                        onDelete(index, title as ColumnType)
+                                    }
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     </div>
 );
