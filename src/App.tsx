@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Form from './components/Form.tsx';
 import { FormValues, Card as CardType } from './components/types.ts';
 import KanbanColumn from './components/KanbanColumn.tsx';
@@ -25,6 +25,12 @@ function App() {
     >(null);
     const [defaultValue, setDefaultValue] = useState<FormValues | null>(null);
 
+    // load saved cards from local storage
+    useEffect(() => {
+        const savedCards = localStorage.getItem('kanbanCards');
+        if (savedCards) setCards(JSON.parse(savedCards));
+    }, []);
+
     // handle form submission
     const onSubmit = (data: FormValues) => {
         const updatedCards = { ...cards };
@@ -44,6 +50,7 @@ function App() {
         }
 
         setCards(updatedCards);
+        localStorage.setItem('kanbanCards', JSON.stringify(updatedCards));
         setEditMode(false);
         setCurrentCardIndex(null);
         setCurrentCardColumn(null);
@@ -55,6 +62,7 @@ function App() {
         const updatedCards = { ...cards };
         updatedCards[column].splice(index, 1);
         setCards(updatedCards);
+        localStorage.setItem('kanbanCards', JSON.stringify(updatedCards));
     };
 
     // handle edit card
@@ -77,6 +85,7 @@ function App() {
         card.status = newStatus;
         updatedCards[newStatus].push(card);
         setCards(updatedCards);
+        localStorage.setItem('kanbanCards', JSON.stringify(updatedCards));
     };
 
     return (
