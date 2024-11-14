@@ -19,6 +19,12 @@ interface KanbanColumnProps {
         newStatus: ColumnType
     ) => void;
 }
+const columnTitles: { [key: string]: string } = {
+    Unclaimed: 'Unclaimed',
+    FirstContact: 'First Contact',
+    PreparingWorkOffer: 'Preparing Work Offer',
+    SendToTherapists: 'Sent to Therapists'
+};
 
 const KanbanColumn: React.FC<KanbanColumnProps> = ({
     title,
@@ -29,13 +35,13 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
 }) => (
     <div className="flex-1 min-w-full md:min-w-[250px]">
         <div className="flex flex-col w-full max-h-[calc(100vh-7rem)] px-2 py-4 text-black border-2 border-[#bad1e0] rounded-md bg-[#bad1e0]">
-            <div className="flex items-center justify-between pb-3">
-                <b>{title}</b>
+            <div className="flex items-center justify-between pb-1">
+                <b>{columnTitles[title]}</b>
                 <span className="flex items-center justify-center w-10 h-10 font-bold bg-white rounded-full">
                     {cards.length}
                 </span>
             </div>
-            <div className="h-full p-1 mt-4 overflow-y-auto">
+            <div className="h-full p-1 overflow-y-auto">
                 {cards.map((card, index) => (
                     <div
                         key={index}
