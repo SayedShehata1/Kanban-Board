@@ -66,6 +66,19 @@ function App() {
         setDefaultValue(card);
     };
 
+    // handle move card (status change)
+    const moveCard = (
+        index: number,
+        column: keyof typeof cards,
+        newStatus: keyof typeof cards
+    ) => {
+        const updatedCards = { ...cards };
+        const card = updatedCards[column].splice(index, 1)[0];
+        card.status = newStatus;
+        updatedCards[newStatus].push(card);
+        setCards(updatedCards);
+    };
+
     return (
         <div className="min-h-screen p-5 bg-gray-800">
             <header className="flex flex-col items-center justify-center mb-8 text-2xl text-white">
@@ -90,6 +103,7 @@ function App() {
                                     cards={cards[columnName]}
                                     onDelete={handleDelete}
                                     onEdit={handleEdit}
+                                    onMoveCard={moveCard}
                                 />
                             )
                         )}

@@ -13,13 +13,19 @@ interface KanbanColumnProps {
     cards: CardType[];
     onDelete: (index: number, column: ColumnType) => void;
     onEdit: (index: number, column: ColumnType) => void;
+    onMoveCard: (
+        index: number,
+        column: ColumnType,
+        newStatus: ColumnType
+    ) => void;
 }
 
 const KanbanColumn: React.FC<KanbanColumnProps> = ({
     title,
     cards,
     onDelete,
-    onEdit
+    onEdit,
+    onMoveCard
 }) => (
     <div className="flex-1">
         <b>{title}</b>
@@ -46,6 +52,26 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                         >
                             Delete
                         </button>
+                        <select
+                            value={card.status}
+                            onChange={(e) =>
+                                onMoveCard(
+                                    index,
+                                    title as ColumnType,
+                                    e.target.value as ColumnType
+                                )
+                            }
+                            className="p-1 ml-2 text-white border rounded-md bg-slate-950"
+                        >
+                            <option value="Unclaimed">Unclaimed</option>
+                            <option value="FirstContact">First Contact</option>
+                            <option value="PreparingWorkOffer">
+                                Preparing Work Offer
+                            </option>
+                            <option value="SendToTherapists">
+                                Send to Therapists
+                            </option>
+                        </select>
                     </div>
                 </div>
             ))}
