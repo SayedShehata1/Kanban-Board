@@ -28,7 +28,9 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
     onMoveCard
 }) => (
     <div className="flex-1">
-        <b>{title}</b>
+        <div className="flex justify-between px-3">
+            <b>{title}</b> <span>{cards.length}</span>
+        </div>
         <div className="h-full p-2 mt-2 bg-blue-500 border border-white">
             {cards.map((card, index) => (
                 <div

@@ -103,7 +103,7 @@ function App() {
                 />
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
-                    <div className="flex flex-row justify-between h-full gap-2">
+                    <div className="flex flex-row justify-between h-full gap-4">
                         {(Object.keys(cards) as (keyof typeof cards)[]).map(
                             (columnName) => (
                                 <KanbanColumn
