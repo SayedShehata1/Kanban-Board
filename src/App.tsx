@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Form from './components/Form.tsx';
 import { FormValues, Card as CardType } from './components/types.ts';
 import KanbanColumn from './components/KanbanColumn.tsx';
+//  DndContext for drag-and-drop
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 
 function App() {
     const [cards, setCards] = useState<{
@@ -88,6 +90,36 @@ function App() {
         localStorage.setItem('kanbanCards', JSON.stringify(updatedCards));
     };
 
+    // drag-and-drop functionality
+    const handleDrag = (event: DragEndEvent) => {
+        const { active, over } = event;
+        if (over) {
+            // The column that we currently in
+            const activeColumn = active.data.current
+                ?.column as keyof typeof cards;
+            // The index of the card that dragged
+            const activeIndex = active.data.current?.index;
+            // The column that we dropped into
+            const overColumn = over.id as keyof typeof cards;
+
+            if (activeColumn !== overColumn && activeIndex !== undefined) {
+                const updatedCards = { ...cards };
+                const movedCard = updatedCards[activeColumn].splice(
+                    activeIndex,
+                    1
+                )[0];
+                movedCard.status = overColumn;
+
+                updatedCards[overColumn].push(movedCard);
+                setCards(updatedCards);
+                localStorage.setItem(
+                    'kanbanCards',
+                    JSON.stringify(updatedCards)
+                );
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen p-3 bg-[#d3e5ed]">
             <header className="flex flex-col items-center justify-center mb-8 text-2xl text-black">
@@ -104,20 +136,22 @@ function App() {
                 <span className="hidden mr-2 border-2 md:inline-block border-l-blue-400"></span>
                 {/* Kanban Board Section */}
                 <div className="flex flex-col w-full text-center">
-                    <div className="flex flex-col flex-wrap justify-between h-full gap-4 lg:flex-row">
-                        {(Object.keys(cards) as (keyof typeof cards)[]).map(
-                            (columnName) => (
-                                <KanbanColumn
-                                    key={columnName}
-                                    title={columnName}
-                                    cards={cards[columnName]}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                    onMoveCard={moveCard}
-                                />
-                            )
-                        )}
-                    </div>
+                    <DndContext onDragEnd={handleDrag}>
+                        <div className="flex flex-col flex-wrap justify-between h-full gap-4 lg:flex-row">
+                            {(Object.keys(cards) as (keyof typeof cards)[]).map(
+                                (columnName) => (
+                                    <KanbanColumn
+                                        key={columnName}
+                                        title={columnName}
+                                        cards={cards[columnName]}
+                                        onDelete={handleDelete}
+                                        onEdit={handleEdit}
+                                        onMoveCard={moveCard}
+                                    />
+                                )
+                            )}
+                        </div>
+                    </DndContext>
                 </div>
             </div>
         </div>
