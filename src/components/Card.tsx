@@ -27,7 +27,7 @@ const Card: React.FC<FormValues & { index: number }> = ({
                     ref={setNodeRef}
                     {...listeners}
                     {...attributes}
-                    src="/src/assets/dragIcon.svg"
+                    src="/dragIcon.svg"
                     alt="drag icon"
                     width={40}
                 />
