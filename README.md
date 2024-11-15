@@ -1,85 +1,134 @@
-# Kanban Board Bookings
+<h1 align="center">
+   Kanban Board Bookings
+</h1>
 
-Thank you for taking the time to do this exercise. If you enjoy the exercise and would like to continue, we would be delighted to interview. We will spend the first part of your interview discussing this work.
+<div align="center" id="top">
 
-Please upload your final work on a public repository and include the url inside the email
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?style=for-the-badge&logo=react-hook-form&logoColor=white)
+![Yup](https://img.shields.io/badge/Yup-FFC107?style=for-the-badge&logoColor=white)
 
-Note: Git history will be checked so make sure you write meaningful commit messages.
+</div>
+<div align="center">
+  <br>
+  <a href="https://kanbanboard-silk.vercel.app/" >
+  <img src="public/preview1.png" target="_blank" alt="Kanban Board Preview">
+  </a>
+  <br>
+  <br>
+</div>
 
-## Brief: Kanban Board Bookings
+---
 
-An online mental health clinic is building a new board to allow its operations team to keep track of new bookings. They have a basic form to enter the member's details onto the board:
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#features">Key Features</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-- Name
-- Title
-- Age
-- Email
-- Mobile Number
+---
 
-The board has 4 columns:
+## About The Project
 
-- **Unclaimed**: new cases
-- **First Contact**: operations team contact member
-- **Preparing Work Offer**: searching for Therapist
-- **Send to Therapist**: matched with Therapist
+**Kanban Board Bookings** is an intuitive task management board designed to
+streamline operations for an online mental health clinic. It features a
+user-friendly interface for tracking new member bookings, validating member
+information, and seamlessly managing tasks across four stages of processing.
 
-This is what the board currently looks like:
-![initial-board](public/initial-board.png)
+<div align="center">
+  <img src="public//preview2.png" alt="Board View">
+</div>
 
-## How to Start
+### Features
 
-This is a simple create-react-app application, and we are using ReactJS with TypeScript and Tailwind CSS for styling.
+-   **Member Form Validations**:
+    -   Ensure correct data entry for fields like Name, Title, Age, Email, and
+        Mobile Number with error handling.
+-   **CRUD Operations**:
 
-## Instructions to run the project:
+    -   Add, view, update, and delete member cards.
 
-1. Run npm install to install the necessary dependencies.
-2. Run npm run dev to start the development server.
-3. Open your browser and navigate to http://localhost:5173.
+-   **Card Status Management**:
 
-You are required to use Tailwind CSS for styling throughout the project. Please do not use any other CSS frameworks or libraries like styled-components.
+    -   Move cards between columns to reflect their current status.
 
-## Tasks
+-   **Drag-and-Drop Functionality**:
 
-1. **Member Form Validations**
+    -   Intuitive movement of cards across columns using drag-and-drop.
 
-   - Implement form validations for each field (Name, Title, Age, Email, and Mobile Number) to ensure that correct data is entered.
-   - Display relevant error and helper messages for invalid or missing inputs.
+-   **Persistent Data with Local Storage**:
 
-2. **Create New Member Card**
+    -   Save and reload data for a consistent user experience.
 
-   - Upon submitting the form, create a new card with the entered details and place it in the _Unclaimed_ column.
+-   **Dynamic Card Count**:
 
-3. **CRUD Operations on Member Cards**
+    -   Automatically display and update the count of cards in each column.
 
-   - Implement full CRUD (Create, Read, Update, Delete) functionality for member cards.
-     - **Create:** Add new member cards to the board.
-     - **Read:** Display the details of each member card.
-     - **Update:** Allow editing of card details.
-     - **Delete:** Enable the removal of member cards from the board.
+-   **Tailwind CSS Styling**:
+    -   Aesthetic and responsive design for all components.
 
-4. **Card Status Management**
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-   - Add functionality to update the status of each card by moving it between different columns (_Unclaimed_, _First Contact_, _Preparing Work Offer_, and _Send to Therapist_).
-   - **_BONUS_** Implement drag-and-drop functionality to allow users to easily change the status of a card by dragging it between columns. 
+---
 
-5. **Persistent Data with Local Storage**
+## Built With
 
-   - Save all member card data to _local storage_ so that the board retains the cards even after a page reload.
-   - Reload and display previously entered cards from _local storage_ when the page is refreshed.
+-   **React**
+-   **TypeScript**
+-   **Tailwind CSS**
+-   **React Hook Form**
+-   **Yup**
+-   **React DnD**
 
-6. **Column Card Count**
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-   - Each column should display the number of member cards it contains, updating dynamically as cards are added, deleted, or moved.
+---
 
-7. **Styling**
-   - Style the member form, card components, and board using **Tailwind CSS**.
-   - Ensure the page has a clean and user-friendly design, with a focus on usability and aesthetics.
+## Getting Started
 
-## Review Interview
+To set up and run this project locally, follow the steps below:
 
-Once we have received your repository we will organize a follow-up interview to discuss your solution.
+### Installation
 
-If you don't have time, that's fine. During the interview, we will discuss strategies that you might have used to achieve these.
+1.  **Clone the repository**:
 
-The final design of the board should look like this:
-![final-board](public/final-board.png)
+    ```bash
+    git clone https://github.com/SayedShehata1/Kanban-Board
+
+    ```
+
+2.  go to the project folder
+
+    ```sh
+    cd Kanban-Board
+
+    ```
+
+3.  install dependencies
+
+    ```bash
+    npm install
+    ```
+
+4.  Run development server
+
+        ```sh
+        npm run dev
+        ```
+
+        <p align="right">(<a href="#top">back to top</a>)</p>
