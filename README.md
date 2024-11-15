@@ -13,8 +13,8 @@
 </div>
 <div align="center">
   <br>
-  <a href="https://kanbanboard-silk.vercel.app/" >
-  <img src="public/preview1.png" target="_blank" alt="Kanban Board Preview">
+  <a href="https://kanbanboard-silk.vercel.app/" target="_blank" >
+  <img src="public/preview1.png" alt="Kanban Board Preview">
   </a>
   <br>
   <br>
@@ -127,8 +127,8 @@ To set up and run this project locally, follow the steps below:
 
 4.  Run development server
 
-        ```sh
-        npm run dev
-        ```
+    ```sh
+    npm run dev
+    ```
 
-        <p align="right">(<a href="#top">back to top</a>)</p>
+    <p align="right">(<a href="#top">back to top</a>)</p>
