@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import CardContainer from './CardContainer';
 import { Card as CardType } from './types';
 import { useDroppable } from '@dnd-kit/core';
 
@@ -34,10 +34,17 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
     onEdit,
     onMoveCard
 }) => {
-    const { setNodeRef: droppableNode } = useDroppable({ id: title });
+    const { setNodeRef: droppableNode, isOver } = useDroppable({ id: title });
+    const droppableStyle = {
+        opacity: isOver ? 0.5 : 1
+    };
 
     return (
-        <div className="flex-1 min-w-full md:min-w-[250px]" ref={droppableNode}>
+        <div
+            className="flex-1 min-w-full md:min-w-[250px]"
+            ref={droppableNode}
+            style={droppableStyle}
+        >
             <div className="flex flex-col w-full max-h-[calc(100vh-7rem)] px-2 py-4 text-black border-2 border-[#bad1e0] rounded-md bg-[#bad1e0]">
                 <div className="flex items-center justify-between pb-1">
                     <b>{columnTitles[title]}</b>
@@ -47,64 +54,15 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                 </div>
                 <div className="h-full p-1 overflow-y-auto">
                     {cards.map((card, index) => (
-                        <div
+                        <CardContainer
                             key={index}
-                            className="p-1 mt-4 transition bg-white rounded-lg hover:shadow-lg"
-                        >
-                            <Card {...card} title={title} index={index} />
-                            <div
-                                key={index}
-                                className="flex flex-col justify-between gap-2 mt-1"
-                            >
-                                <div>
-                                    <span className="font-semibold">
-                                        Status:{' '}
-                                    </span>
-                                    <select
-                                        value={card.status}
-                                        onChange={(e) =>
-                                            onMoveCard(
-                                                index,
-                                                title as ColumnType,
-                                                e.target.value as ColumnType
-                                            )
-                                        }
-                                        className="p-1 text-white border rounded-md w-fit bg-slate-950"
-                                    >
-                                        <option value="Unclaimed">
-                                            Unclaimed
-                                        </option>
-                                        <option value="FirstContact">
-                                            First Contact
-                                        </option>
-                                        <option value="PreparingWorkOffer">
-                                            Preparing Work Offer
-                                        </option>
-                                        <option value="SendToTherapists">
-                                            Send to Therapists
-                                        </option>
-                                    </select>
-                                </div>
-                                <div className="flex justify-center gap-5 pb-2">
-                                    <button
-                                        onClick={() =>
-                                            onEdit(index, title as ColumnType)
-                                        }
-                                        className="text-blue-500 hover:text-blue-700"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            onDelete(index, title as ColumnType)
-                                        }
-                                        className="text-red-500 hover:text-red-700"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                            card={card}
+                            title={title}
+                            index={index}
+                            onMoveCard={onMoveCard}
+                            onDelete={onDelete}
+                            onEdit={onEdit}
+                        />
                     ))}
                 </div>
             </div>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Form from './components/Form.tsx';
 import { FormValues, Card as CardType } from './components/types.ts';
-import KanbanColumn from './components/KanbanColumn.tsx';
 //  DndContext for drag-and-drop
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import KanbanColumn from './components/KanbanColumn.tsx';
 
 function App() {
     const [cards, setCards] = useState<{
